@@ -147,10 +147,10 @@ class Ui_Student_Info(object):
     def retranslateUi(self, Student_Info):
         _translate = QtCore.QCoreApplication.translate
         Student_Info.setWindowTitle(_translate("Student_Info", "Form"))
-        self.lbl_mcq_heading.setText(_translate("Student_Info", "পরিচয়"))
-        self.label_8.setText(_translate("Student_Info", "নাম"))
-        self.label_10.setText(_translate("Student_Info", "আইডি"))
-        self.btn_submit.setText(_translate("Student_Info", "সাবমিট করুন"))
+        self.lbl_mcq_heading.setText(_translate("Student_Info", "Student Info"))
+        self.label_8.setText(_translate("Student_Info", "Name"))
+        self.label_10.setText(_translate("Student_Info", "ID"))
+        self.btn_submit.setText(_translate("Student_Info", "Submit"))
         self.btn_submit.setShortcut(_translate("Student_Info", "Return"))
 
 

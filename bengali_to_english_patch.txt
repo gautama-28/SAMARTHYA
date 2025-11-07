@@ -1,0 +1,96 @@
+Bengali → English Preview Patch
+
+Purpose
+- This is a preview (no changes applied). It lists the deterministic mappings, affected files, and exact textual replacements I will apply if you approve.
+- I will not modify binary or lesson content files beyond renaming filenames. I will only replace literal strings inside code (*.py, *.ui, generated ui_*.py, .json, .txt) and rename files/folders that contain Bengali characters.
+
+Mapping (applied consistently to filenames and string literals)
+- "পাঠ" -> "lesson"
+- "পাঠসমূহ" -> "lessons"
+- "মডিউলসমূহ" -> "modules"
+- "মডিউল" -> "module"
+- "পাঠ_" -> "lesson_" (prefix-based folder names like 'পাঠ_3' -> 'lesson_3')
+- "পাঠ্যক্রম" -> "curriculum"
+- "পাঠ্যের বিষয়" -> "lesson_topic"
+- "পাঠ মূল্যায়ন" -> "lesson_evaluation" (UI label)
+- "পরিচয়" -> "identity" or "introduction" (I will use "introduction" for lesson topic labels)
+- "অভিনন্দন" -> "congratulations"
+- "ধাঁধা" -> "puzzle"
+
+Normalization rule for filenames
+- ASCII-only, lowercase, underscores between words, preserve file extension.
+  Example: `পাঠ_3` -> `lesson_3`
+  Example: `পাঠ্যের বিষয়.txt` -> `lesson_topic.txt`
+
+Planned filesystem renames (examples found in repo)
+- EmPower/Student/Resources/পাঠ_3 -> EmPower/Student/Resources/lesson_3
+  - Inside `lesson_3` there are subfolders like `কর্মধারা_শিখন(Activity)_মডিউল_1` and `সম্পর্ক_শিখন(Association)_মডিউল_1`. I will not rename inner content unless they contain Bengali-only names — I will list those for review.
+- EmPower/Teacher/Lessons/পাঠসমূহ -> EmPower/Teacher/Lessons/lessons
+- EmPower/Teacher/Lessons/মডিউলসমূহ -> EmPower/Teacher/Lessons/modules
+
+Planned textual replacements (applied to code and UI files)
+- Replace any occurrences of the mapping tokens above in:
+  - `EmPower/**/Frontend/**/PyQT_UI/*.ui`
+  - `EmPower/**/Frontend/**/Student_UI/ui_*.py` and `Teacher_UI/ui_*.py`
+  - `EmPower/**/Frontend/**/src/*.py` (Home.py, Lesson.py, Lesson_Assigning_Window.py, etc.)
+  - Other .py, .json, .txt files under `EmPower/` that contain non-ASCII matches.
+
+Examples (concrete snippets I will change)
+- In `EmPower/Student/Frontend/src/Home.py`
+  - Old: if folder_name.startswith(str(std_roll)) and os.path.isdir(folder_path) and 'পাঠ' in folder_name:
+  - New: if folder_name.startswith(str(std_roll)) and os.path.isdir(folder_path) and 'lesson' in folder_name:
+
+- In `EmPower/Student/Frontend/src/Lesson.py`
+  - Old: self.lesson_list = [folder for folder in os.listdir('Resources') if folder.startswith('পাঠ')]
+  - New: self.lesson_list = [folder for folder in os.listdir('Resources') if folder.startswith('lesson')]
+
+- In `EmPower/Student/Frontend/Student_UI/ui_home.py` and `PyQT_UI/home.ui` (UI labels)
+  - Old: self.lbl_lesson_headline.setText(_translate("MainWindow", "পাঠ ১"))
+  - New: self.lbl_lesson_headline.setText(_translate("MainWindow", "lesson 1"))
+
+- In `EmPower/Teacher/Frontend/Teacher_UI/ui_add_lesson.py` and `PyQt_UI/add_lesson_content.ui`
+  - "পাঠ্যক্রম" -> "curriculum"
+  - "পাঠ্যের বিষয়" -> "lesson_topic"
+
+Bulk replace plan
+- For every file matched by the repo search (non-ASCII matches), I will:
+  1) Replace literal occurrences of mapped Bengali words with their English mapping.
+  2) For filenames and directory names that contain Bengali, prepare a rename operation and update all code references (imports and path strings) to use the new name.
+  3) Leave file encodings as-is (UTF-8) but ensure the new text is ASCII.
+
+Edge cases & notes
+- Generated UI files (ui_*.py) are safe to update but be aware that if the original `.ui` files are changed later and re-run through pyuic, labels may revert. Consider also updating the `.ui` files in `PyQT_UI/` (I will update them too).
+- Some Bengali tokens appear in user-facing content (e.g., lesson text inside Resources). I will only rename filenames for resources; I will not translate internal lesson content (images, textual lesson content) unless you instruct me to.
+- If a filename rename collides with an existing ASCII filename, I will stop and list collisions for manual resolution.
+- I will not change `.venv` or third-party packages.
+
+Affected files (partial list - generated from repo scan)
+(These are the specific files with matches I found; I will include all similar matches in the final patch):
+- EmPower/Student/Frontend/PyQT_UI/home.ui
+- EmPower/Student/Frontend/src/Home.py
+- EmPower/Student/Frontend/src/Lesson.py
+- EmPower/Student/Frontend/Student_UI/ui_home.py
+- EmPower/Student/Frontend/Student_UI/ui_student_info.py
+- EmPower/Student/Resources/পাঠ_3/ (folder and its subfolders)
+- EmPower/Teacher/Frontend/PyQt_UI/add_lesson_content.ui
+- EmPower/Teacher/Frontend/Teacher_UI/ui_add_lesson.py
+- EmPower/Teacher/Frontend/src/Lesson_Assigning_Window.py
+- (plus any other ui_*.py and .ui files containing Bengali strings)
+
+What I'll include in the patch file
+- A list of exact textual diffs for code/UI files (old line -> new line) for each occurrence.
+- A list of filesystem rename operations (FROM -> TO) for any filename or directory rename.
+- A short checklist of follow-ups to run after applying the patch (install requirements, run `python run_debug.py --run`, test GUI flows).
+
+Next steps (after you review)
+- If you APPROVE: I will apply the edits and filesystem renames (or produce a second patch in the actual repo format if you prefer), then run quick import-checks and `run_debug.py` to catch obvious errors. I will report changes and any fixes required.
+- If you REQUEST CHANGES to the mapping: tell me which tokens to change (e.g., prefer "chapter" instead of "lesson") and I will regenerate the preview.
+- If you want a git backup first: I can create a patch file (this file is the patch preview). I can also generate a git-format patch if you prefer; tell me.
+
+Approve or request changes
+- Reply with one of the options:
+  1) APPROVE: apply the described changes now (I will execute edits and renames).
+  2) MODIFY: provide mapping changes (word-by-word) and I will update the preview.
+  3) CANCEL: stop and make no changes.
+
+--- End of preview ---

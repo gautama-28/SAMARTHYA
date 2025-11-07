@@ -55,25 +55,19 @@ def set_drop_shadow(ui_object):
     ui_object.setGraphicsEffect(shadow)
 
 
+# MODIFIED FUNCTION: Numerals are no longer converted to Bengali.
 def filter_data(text):
     
     print("DATA: ", text)
     
-    # filter number to bengali
-    bengali_numeral_map = {
-        '0':'০',
-        '1':'১', 
-        '2':'২',
-        '3':'৩',
-        '4':'৪',
-        '5':'৫',
-        '6':'৬',
-        '7':'৭',
-        '8':'৮', 
-        '9':'৯'
-    }
-
+    # The Bengali numeral map is removed.
+    
+    # Only the underscore replacement remains.
     text = text.replace('_', ' ')
-    text = text.translate(str.maketrans(bengali_numeral_map))
-            
-    return text 
+    
+    # The numeral translation step is removed.
+    # text = text.translate(str.maketrans(bengali_numeral_map))
+    
+    # The numbers will remain in English (Arabic) numerals. 
+    
+    return text

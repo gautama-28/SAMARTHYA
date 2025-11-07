@@ -1,2 +1,8 @@
 pygame
 opencv-python
+# Optional: pyaudio is used by Backend.AudioPlayer. On Windows it's often
+# easier to install via pipwin: `python -m pip install pipwin` then
+# `python -m pipwin install pyaudio`.
+pyaudio
+pipwin
+pillow

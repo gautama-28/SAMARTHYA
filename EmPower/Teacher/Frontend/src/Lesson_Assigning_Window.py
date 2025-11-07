@@ -68,7 +68,7 @@ class Lesson_Assigning_Window(QMainWindow):  # Home extends QMainWindow
         # show warning if student name is not selected
         if model.data(index) is None:
             show_warning_message(
-                "সতর্কতা", "বাম পাশে অবস্থিত শিক্ষার্থীর তালিকা থেকে শিক্ষার্থী নির্বাচন করে এরপর বাটনে প্রেস করুন")
+                "Warning", "Select a student from the list on the left, then press the button")
             return
 
         std_id, std_name = model.data(index).split('. ')
@@ -85,7 +85,7 @@ class Lesson_Assigning_Window(QMainWindow):  # Home extends QMainWindow
         # set window icon and title
         self.custom_widget.setWindowIcon(
             QIcon("../Teacher/Frontend/Images/primary_logo.png"))
-        self.custom_widget.setWindowTitle("পাঠ নির্ধারণ")
+        self.custom_widget.setWindowTitle("Assign Lesson")
 
         # set the student name and id in the form
         self.form.lsn_edit_student_id.setText(std_id)
@@ -156,11 +156,11 @@ class Lesson_Assigning_Window(QMainWindow):  # Home extends QMainWindow
         
         
         if get_lesson_id == '':
-            show_warning_message("পাঠ নং নির্বাচন", "পাঠ নং নির্বাচন করুন!")
+            show_warning_message("Select Lesson Number", "Please select a lesson number!")
             return
 
         
-        warning = show_confirmation_message("নিশ্চিতকরণ", "আপনি কি নিশ্চিত যে আপনি পাঠ নির্ধারণ করতে চান?")
+    warning = show_confirmation_message("Confirmation", "Are you sure you want to assign the lesson?")
         
          
         if warning:
@@ -193,7 +193,7 @@ class Lesson_Assigning_Window(QMainWindow):  # Home extends QMainWindow
             copy_folder_name = 'Student_Content\\' + get_student_id + '_' + get_lesson_id
 
                        
-            lesson_folder = r'Lessons\\পাঠসমূহ\\' + get_lesson_id
+            lesson_folder = r'Lessons\\lessons\\' + get_lesson_id
             mcq_folder = r'Lessons\MCQ_Questions\q_' + get_mcq_id
             puzzle_folder = r'Lessons\Puzzle_Images\p_' + get_puzzle_id
             sequence_folder = r'Lessons\\Sequence_Images\\s_' + get_sequence_id
@@ -207,7 +207,7 @@ class Lesson_Assigning_Window(QMainWindow):  # Home extends QMainWindow
                 shutil.rmtree(copy_folder_name)
 
             # Copy the lesson folder
-            lesson_folder = r'Lessons\\পাঠসমূহ\\' + get_lesson_id
+            lesson_folder = r'Lessons\\lessons\\' + get_lesson_id
             shutil.copytree(lesson_folder, copy_folder_name+'\\'+get_lesson_id)
 
             # Copy the other folders

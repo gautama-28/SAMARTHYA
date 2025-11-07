@@ -76,7 +76,7 @@
          <string notr="true">color: rgb(143, 227, 207);</string>
         </property>
         <property name="text">
-         <string>মডিউলের কন্টেন্ট যুক্ত করুন</string>
+         <string>Add Module Content</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
@@ -155,7 +155,7 @@ color: rgb(137, 218, 199);</string>
             <string notr="true">color: rgb(137, 218, 199);</string>
            </property>
            <property name="text">
-            <string>ক্যাটেগরি</string>
+            <string>Category</string>
            </property>
           </widget>
          </item>
@@ -180,28 +180,28 @@ border-radius: 10px;
 color: rgb(43, 72, 101);</string>
            </property>
            <item>
-            <property name="text">
-             <string>ক্যাটাগরি নির্বাচন করুন</string>
+             <property name="text">
+             <string>Select Category</string>
             </property>
            </item>
            <item>
-            <property name="text">
-             <string>নাম শিখন (Noun)</string>
+             <property name="text">
+             <string>Name Learning (Noun)</string>
             </property>
            </item>
            <item>
-            <property name="text">
-             <string>ক্রিয়া শিখন (Verb)</string>
+             <property name="text">
+             <string>Verb Learning (Verb)</string>
             </property>
            </item>
            <item>
-            <property name="text">
-             <string>সম্পর্ক শিখন (Association)</string>
+             <property name="text">
+             <string>Association Learning (Association)</string>
             </property>
            </item>
            <item>
-            <property name="text">
-             <string>কর্মধারা শিখন (Activity)</string>
+             <property name="text">
+             <string>Activity Learning (Activity)</string>
             </property>
            </item>
           </widget>
@@ -256,7 +256,7 @@ color: rgb(43, 72, 101);</string>
             <string notr="true">color: rgb(137, 218, 199);</string>
            </property>
            <property name="text">
-            <string>পাঠ্যক্রম</string>
+            <string>Curriculum</string>
            </property>
           </widget>
          </item>
@@ -341,7 +341,7 @@ color: rgb(43, 72, 101);</string>
             <string notr="true">color: rgb(137, 218, 199);</string>
            </property>
            <property name="text">
-            <string>পাঠ্যের বিষয়</string>
+            <string>Lesson Topic</string>
            </property>
           </widget>
          </item>
@@ -438,7 +438,7 @@ border: 3px solid rgb(0, 43, 91);
 }</string>
            </property>
            <property name="text">
-            <string>ছবি/ভিডিও নির্বাচন করুন</string>
+            <string>Select Image/Video</string>
            </property>
            <property name="shortcut">
             <string>Return</string>
@@ -572,7 +572,7 @@ border: 3px solid rgb(0, 43, 91);
 }</string>
            </property>
            <property name="text">
-            <string>অডিও নির্বাচন করুন</string>
+            <string>Select Audio</string>
            </property>
            <property name="shortcut">
             <string>Return</string>
@@ -641,7 +641,7 @@ border: 3px solid rgb(0, 43, 91);
                <string notr="true">color: rgb(137, 218, 199);</string>
               </property>
               <property name="text">
-               <string>অথবা</string>
+               <string>Or</string>
               </property>
               <property name="alignment">
                <set>Qt::AlignCenter</set>
@@ -694,7 +694,7 @@ border: 3px solid rgb(0, 43, 91);
 }</string>
            </property>
            <property name="text">
-            <string>অডিও রেকর্ড করুন</string>
+            <string>Record Audio</string>
            </property>
            <property name="shortcut">
             <string>Return</string>
@@ -777,7 +777,7 @@ border: 3px solid rgb(0, 43, 91);
 }</string>
         </property>
         <property name="text">
-         <string>মডিউল তৈরি করুন </string>
+         <string>Create Module</string>
         </property>
         <property name="shortcut">
          <string>Return</string>
